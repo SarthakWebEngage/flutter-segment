@@ -11,9 +11,12 @@ import com.segment.analytics.Middleware;
 import com.segment.analytics.Properties;
 import com.segment.analytics.Traits;
 import com.segment.analytics.Options;
+import com.segment.analytics.WebhookIntegration;
 import com.segment.analytics.integrations.BasePayload;
 import com.segment.analytics.android.integrations.amplitude.AmplitudeIntegration;
 import com.segment.analytics.android.integrations.appsflyer.AppsflyerIntegration;
+import com.webengage.sdk.android.integrations.segment.WebEngageIntegration;
+
 import static com.segment.analytics.Analytics.LogLevel;
 
 import androidx.annotation.NonNull;
@@ -74,7 +77,7 @@ public class FlutterSegmentPlugin implements MethodCallHandler, FlutterPlugin {
       }
 
       if (options.getDebug()) {
-        analyticsBuilder.logLevel(LogLevel.DEBUG);
+        analyticsBuilder.logLevel(LogLevel.VERBOSE);
       }
 
       if (options.isAmplitudeIntegrationEnabled()) {
@@ -83,6 +86,10 @@ public class FlutterSegmentPlugin implements MethodCallHandler, FlutterPlugin {
 
       if (options.isAppsflyerIntegrationEnabled()) {
         analyticsBuilder.use(AppsflyerIntegration.FACTORY);
+      }
+
+      if (options.isWebEngageIntegrationEnabled()) {
+        analyticsBuilder.use(WebEngageIntegration.FACTORY);
       }
 
       // Here we build a middleware that just appends data to the current context
