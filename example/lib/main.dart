@@ -11,7 +11,9 @@ void main() async {
   await Segment.config(
     options: SegmentConfig(
       writeKey: 'YOUR_WRITE_KEY_GOES_HERE',
-      trackApplicationLifecycleEvents: false,
+      trackApplicationLifecycleEvents: true,
+      webengageIntegrationEnabled: true,
+      debug: true
     ),
   );
 
